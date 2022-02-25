@@ -7,9 +7,9 @@ const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <div id='order-pizza'>
+      <div>
         <Link to='/'>Home</Link>
-        <Link to='/pizza'>Order Pizza</Link>
+        <Link id='order-pizza' to='/pizza'>Order Pizza</Link>
       </div>
 
       <Route path='/pizza'>
