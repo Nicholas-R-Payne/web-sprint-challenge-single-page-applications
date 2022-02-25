@@ -25,13 +25,23 @@ const App = () => {
     setFormValues({ ...formValues, [inputName]: inputValue });
   }
 
-  const submitForm = newOrder => {
+  const postOrder = newOrder => {
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
         setPizzaOrders([res.data, ...pizzaOrders])
       })
       .catch(err => console.error(err))
       .finally(() => setFormValues(initialFormValues))
+  }
+
+  const submitForm = () => {
+    const newOrder = {
+      name: formValues.name.trim(),
+      size: formValues.size,
+      toppings: ['pepperoni', 'sausage', 'bacon', 'ham'].filter(topping => !!formValues[topping]),
+      special: formValues.special.trim()
+    }
+    postOrder(newOrder);
   }
 
   return (
