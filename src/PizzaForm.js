@@ -6,7 +6,7 @@ const PizzaForm = (props) => {
 
     return (
         <form id='pizza-form'>
-
+            <h2>Build Your Own Pizza</h2>
             <label>Name
                 <input id='name-input'
                     name='name'
@@ -15,7 +15,7 @@ const PizzaForm = (props) => {
                     value={name}
                 />
             </label>
-
+            <br /><br />
             <label>Size
                 <select id='size-dropdown'
                     name='size'
@@ -57,6 +57,19 @@ const PizzaForm = (props) => {
                     checked={ham}
                 />
             </label>
+            <br /><br />
+            <label>Special Instructions
+                <input id='special-text'
+                    name='special'
+                    type='text'
+                    placeholder='Enter any special instructions.'
+                    value={special}
+                />
+            </label>
+            <br /> <br />
+            <div>
+                <button>Submit</button>
+            </div>
         </form>
     )
 }
