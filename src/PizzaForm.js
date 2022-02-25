@@ -7,12 +7,23 @@ const PizzaForm = (props) => {
     return (
         <form id='pizza-form'>
             <label>Name
-                <input
+                <input id='name-input'
                     name='name'
                     type='text'
                     placeholder='Enter your name.'
                     value={name}
                 />
+            </label>
+            <label>Size
+                <select id='size-dropdown'
+                    name='size'
+                    value={size}
+                >
+                    <option value=''>- Select a Size -</option>
+                    <option value='small'>Small</option>
+                    <option value='medium'>Medium</option>
+                    <option value='large'>Large</option>
+                </select>
             </label>
         </form>
     )
