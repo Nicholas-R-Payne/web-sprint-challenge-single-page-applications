@@ -31,6 +31,7 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
+
   const postOrder = newOrder => {
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
@@ -77,6 +78,16 @@ const App = () => {
 
       <Route path='/pizza'>
         <PizzaForm values={formValues} update={updateForm} submit={submitForm} disabled={disabled} errors={formErrors} />
+        {pizzaOrders.map(order => {
+          return (
+            <div key={order.id}>
+              <p>Name: {order.name}</p>
+              <p>Size: {order.size}</p>
+              <p>Toppings: {order.toppings}</p>
+              <p>Special Instructions: {order.special}</p>
+            </div>
+          )
+        })}
       </Route>
     </>
   );
