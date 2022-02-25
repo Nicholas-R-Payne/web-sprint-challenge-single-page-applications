@@ -4,8 +4,18 @@ const PizzaForm = (props) => {
     const { update, submit } = props;
     const { name, size, pepperoni, sausage, bacon, ham, special } = props.values;
 
+    const onChange = (evt) => {
+        const {name, value} = evt.target;
+        update(name, value);
+    }
+
+    const onSubmit = (evt) => {
+        evt.preventDefault();
+        submit()
+    }
+    
     return (
-        <form id='pizza-form'>
+        <form id='pizza-form' onSubmit={onSubmit}>
             <h2>Build Your Own Pizza</h2>
             <label>Name
                 <input id='name-input'
@@ -13,6 +23,7 @@ const PizzaForm = (props) => {
                     type='text'
                     placeholder='Enter your name.'
                     value={name}
+                    onChange={onChange}
                 />
             </label>
             <br /><br />
@@ -20,6 +31,7 @@ const PizzaForm = (props) => {
                 <select id='size-dropdown'
                     name='size'
                     value={size}
+                    onChange={onChange}
                 >
                     <option value=''>- Select a Size -</option>
                     <option value='small'>Small</option>
@@ -34,6 +46,7 @@ const PizzaForm = (props) => {
                     type='checkbox'
                     name='pepperoni'
                     checked={pepperoni}
+                    onChange={onChange}
                 />
             </label>
             <label>Sausage
@@ -41,6 +54,7 @@ const PizzaForm = (props) => {
                     type='checkbox'
                     name='sausage'
                     checked={sausage}
+                    onChange={onChange}
                 />
             </label>
             <label>Bacon
@@ -48,6 +62,7 @@ const PizzaForm = (props) => {
                     type='checkbox'
                     name='bacon'
                     checked={bacon}
+                    onChange={onChange}
                 />
             </label>
             <label>Ham
@@ -55,6 +70,7 @@ const PizzaForm = (props) => {
                     type='checkbox'
                     name='ham'
                     checked={ham}
+                    onChange={onChange}
                 />
             </label>
             <br /><br />
@@ -64,6 +80,7 @@ const PizzaForm = (props) => {
                     type='text'
                     placeholder='Enter any special instructions.'
                     value={special}
+                    onChange={onChange}
                 />
             </label>
             <br /> <br />
