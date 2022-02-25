@@ -14,18 +14,21 @@ const initialFormValues = {
   special: ''
 }
 
+const initialPizzaOrder = [];
+
 const App = () => {
 
+  const [pizzaOrders, setPizzaOrders] = useState(initialPizzaOrder);
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({ ...formValues, [inputName]: inputValue });
   }
 
-  const submitForm = () => {
-    axios.post('https://reqres.in/api/orders', formValues)
+  const submitForm = newOrder => {
+    axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
-        console.log(res)
+        setPizzaOrders([res.data, ...pizzaOrders])
       })
       .catch(err => console.error(err))
       .finally(() => setFormValues(initialFormValues))
