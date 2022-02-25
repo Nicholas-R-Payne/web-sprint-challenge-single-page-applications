@@ -19,11 +19,11 @@ const PizzaForm = (props) => {
         <form className='pizza-form' onSubmit={onSubmit}>
             <div className='form-group inputs'>
                 <label>Name
-                    <input className='name-input'
+                    <input
                         name='name'
                         type='text'
                         placeholder='Enter your name.'
-                        value={values.name}
+                        value={name}
                         onChange={onChange}
                     />
                 </label>
@@ -35,3 +35,5 @@ const PizzaForm = (props) => {
         </form>
     )
 }
+
+export default PizzaForm;

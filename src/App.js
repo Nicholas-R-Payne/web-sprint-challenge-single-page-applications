@@ -11,7 +11,7 @@ const initialFormValues = {
   special: ''
 }
 
-const App = () => {
+function App () {
 
   const [formValues, setFormValues] = useState(initialFormValues)
 
@@ -20,11 +20,12 @@ const App = () => {
   }
 
   const submitForm = () => {
-    const newPizza = {
-      name: formValues.name.trim(),
-      size: formValues.size,
-      special: formValues.special
-    }
+    axios.post('https://reqres.in/api/orders', formValues)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.error(err))
+      .finally(() => setFormValues(initialFormValues))
   }
 
   return (
@@ -39,4 +40,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;
