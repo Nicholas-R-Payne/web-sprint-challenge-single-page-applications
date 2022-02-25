@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Link } from 'react-router-dom';
+import axios from 'axios';
 
 import PizzaForm from './PizzaForm'
 
@@ -15,7 +16,20 @@ const initialFormValues = {
 
 const App = () => {
 
-  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const updateForm = (inputName, inputValue) => {
+    setFormValues({ ...formValues, [inputName]: inputValue });
+  }
+
+  const submitForm = () => {
+    axios.post('https://reqres.in/api/orders', formValues)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.error(err))
+      .finally(() => setFormValues(initialFormValues))
+  }
 
   return (
     <>
@@ -26,7 +40,7 @@ const App = () => {
       </div>
 
       <Route path='/pizza'>
-        <PizzaForm values={formValues} />
+        <PizzaForm values={formValues} update={updateForm} submit={submitForm} />
       </Route>
     </>
   );
