@@ -1,12 +1,13 @@
 import React from 'react';
 
 const PizzaForm = (props) => {
-    const { values, update, submit } = props;
+    const { update, submit } = props;
+
     const { name, size, topping1, topping2, special } = props.values;
+    console.log(name)
 
     const onChange = (evt) => {
-        const name = evt.target.name;
-        const value = evt.target.value;
+        const {name, value} = evt.target;
         update(name, value);
     }
 
@@ -17,20 +18,18 @@ const PizzaForm = (props) => {
 
     return (
         <form className='pizza-form' onSubmit={onSubmit}>
-            <div className='form-group inputs'>
-                <label>Name
-                    <input
-                        name='name'
-                        type='text'
-                        placeholder='Enter your name.'
-                        value={name}
-                        onChange={onChange}
-                    />
-                </label>
+            <label>Name
+                <input
+                    name='name'
+                    type='text'
+                    placeholder='Enter your name.'
+                    value={name}
+                    onChange={onChange}
+                />
+            </label>
 
-                <div className='submit'>
-                    <button>Submit</button>
-                </div>
+            <div className='submit'>
+                <button>Submit</button>
             </div>
         </form>
     )

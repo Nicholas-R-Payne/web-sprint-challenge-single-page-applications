@@ -32,11 +32,7 @@ function App () {
     <>
       <h1>Lambda Eats</h1>
       <p>You can remove this code and create your own header</p>
-      <PizzaForm
-      value={formValues}
-      update={updateForm}
-      submit={submitForm}
-      />
+      <PizzaForm values={formValues} update={updateForm} submit={submitForm} />
     </>
   );
 };
