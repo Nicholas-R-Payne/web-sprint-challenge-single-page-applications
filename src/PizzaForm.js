@@ -9,8 +9,13 @@ export default function PizzaForm(props) {
         update(name, value);
     }
 
+    const onSubmit = evt => {
+        evt.preventDefault();
+        submit()
+    }
+
     return (
-        <form className='pizza-form'>
+        <form className='pizza-form' onSubmit={onSubmit}>
             <div className='form-group inputs'>
                 <label>Name
                     <input className='name-input'
@@ -21,6 +26,10 @@ export default function PizzaForm(props) {
                         onChange={onChange}
                     />
                 </label>
+
+                <div className='submit'>
+                    <button>Submit</button>
+                </div>
             </div>
         </form>
     )
