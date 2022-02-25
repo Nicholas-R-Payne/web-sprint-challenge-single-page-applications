@@ -1,16 +1,19 @@
 import React from "react";
 import { Route, Link } from 'react-router-dom';
 
+import PizzaForm from './PizzaForm'
+
 const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <div>
-        <Link id='order-pizza' to='/'>Order Pizza</Link>
+      <div id='order-pizza'>
+        <Link to='/'>Home</Link>
+        <Link to='/pizza'>Order Pizza</Link>
       </div>
 
-      <Route path='/'>
-
+      <Route path='/pizza'>
+        <PizzaForm />
       </Route>
     </>
   );
