@@ -1,15 +1,16 @@
 import React from 'react';
 
-export default function PizzaForm(props) {
-    const { values, update, submit } = props
+const PizzaForm = (props) => {
+    const { values, update, submit } = props;
+    const { name, size, topping1, topping2, special } = props.values;
 
-    const onChange = evt => {
+    const onChange = (evt) => {
         const name = evt.target.name;
         const value = evt.target.value;
         update(name, value);
     }
 
-    const onSubmit = evt => {
+    const onSubmit = (evt) => {
         evt.preventDefault();
         submit()
     }
