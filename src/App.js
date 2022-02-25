@@ -41,6 +41,7 @@ const App = () => {
       toppings: ['pepperoni', 'sausage', 'bacon', 'ham'].filter(topping => !!formValues[topping]),
       special: formValues.special.trim()
     }
+    console.log(newOrder)
     postOrder(newOrder);
   }
 

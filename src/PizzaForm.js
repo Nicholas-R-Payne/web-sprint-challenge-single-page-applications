@@ -85,7 +85,7 @@ const PizzaForm = (props) => {
             </label>
             <br /> <br />
             <div>
-                <button>Submit</button>
+                <button id='order-button'>Submit</button>
             </div>
         </form>
     )
