@@ -6,8 +6,10 @@ import PizzaForm from './PizzaForm'
 const initialFormValues = {
   name: '',
   size: '',
-  topping1: false,
-  topping2: false,
+  pepperoni: false,
+  sausage: false,
+  bacon: false,
+  ham: false,
   special: ''
 }
 
