@@ -1,12 +1,13 @@
 import React from "react";
 
 const PizzaForm = (props) => {
-    const { update, submit, errors } = props;
+    const { update, submit, disabled, errors } = props;
     const { name, size, pepperoni, sausage, bacon, ham, special } = props.values;
 
     const onChange = (evt) => {
-        const {name, value} = evt.target;
-        update(name, value);
+        const {name, value, type, checked} = evt.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+        update(name, valueToUse);
     }
 
     const onSubmit = (evt) => {
@@ -93,7 +94,7 @@ const PizzaForm = (props) => {
             </label>
             <br /> <br />
             <div>
-                <button id='order-button'>Order</button>
+                <button id='order-button' disabled={disabled}>Order</button>
             </div>
         </form>
     )

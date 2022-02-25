@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -22,12 +22,14 @@ const initialFormErrors = {
 }
 
 const initialPizzaOrder = [];
+const initialDisabled = true;
 
 const App = () => {
 
   const [pizzaOrders, setPizzaOrders] = useState(initialPizzaOrder);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const postOrder = newOrder => {
     axios.post('https://reqres.in/api/orders', newOrder)
@@ -60,6 +62,11 @@ const App = () => {
     postOrder(newOrder);
   }
 
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  }, [formValues])
+
   return (
     <>
       <h1>Lambda Eats</h1>
@@ -69,7 +76,7 @@ const App = () => {
       </div>
 
       <Route path='/pizza'>
-        <PizzaForm values={formValues} update={updateForm} submit={submitForm} errors={formErrors} />
+        <PizzaForm values={formValues} update={updateForm} submit={submitForm} disabled={disabled} errors={formErrors} />
       </Route>
     </>
   );
