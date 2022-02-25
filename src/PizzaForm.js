@@ -1,7 +1,7 @@
 import React from "react";
 
 const PizzaForm = (props) => {
-    const { update, submit } = props;
+    const { update, submit, errors } = props;
     const { name, size, pepperoni, sausage, bacon, ham, special } = props.values;
 
     const onChange = (evt) => {
@@ -17,6 +17,11 @@ const PizzaForm = (props) => {
     return (
         <form id='pizza-form' onSubmit={onSubmit}>
             <h2>Build Your Own Pizza</h2>
+
+            <div id='errors'>
+                <div>{errors.name}</div>
+            </div>
+
             <label>Name
                 <input id='name-input'
                     name='name'

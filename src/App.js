@@ -18,8 +18,7 @@ const initialFormValues = {
 
 const initialFormErrors = {
   name: '',
-  size: '',
-  special: ''
+  size: ''
 }
 
 const initialPizzaOrder = [];
@@ -29,10 +28,6 @@ const App = () => {
   const [pizzaOrders, setPizzaOrders] = useState(initialPizzaOrder);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-
-  const updateForm = (inputName, inputValue) => {
-    setFormValues({ ...formValues, [inputName]: inputValue });
-  }
 
   const postOrder = newOrder => {
     axios.post('https://reqres.in/api/orders', newOrder)
@@ -50,12 +45,9 @@ const App = () => {
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
   }
 
-  const inputChange = (name, value) => {
-    validate(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value
-    })
+  const updateForm = (inputName, inputValue) => {
+    validate(inputName, inputValue)
+    setFormValues({ ...formValues, [inputName]: inputValue });
   }
 
   const submitForm = () => {
@@ -65,7 +57,6 @@ const App = () => {
       toppings: ['pepperoni', 'sausage', 'bacon', 'ham'].filter(topping => !!formValues[topping]),
       special: formValues.special.trim()
     }
-    console.log(newOrder)
     postOrder(newOrder);
   }
 
@@ -78,7 +69,7 @@ const App = () => {
       </div>
 
       <Route path='/pizza'>
-        <PizzaForm values={formValues} change={inputChange} update={updateForm} submit={submitForm} errors={formErrors} />
+        <PizzaForm values={formValues} update={updateForm} submit={submitForm} errors={formErrors} />
       </Route>
     </>
   );
